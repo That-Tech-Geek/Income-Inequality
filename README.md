@@ -1,9 +1,6 @@
 # Macroeconomic Determinants of Income Inequality: A Cross-Country Empirical Analysis
 
 **Authors:** Sambit Mishra, Dhruv Tyagi, Ritobrata Purkayastha, Barsha Mishra, Jahnvi Bahl
-
-**Date:** March 9, 2026
-
 ---
 
 ## Abstract
@@ -69,7 +66,7 @@ $$Gini\_Index_i = \beta_0 + \beta_1 \ln(GDPpc_i) + \beta_2 \ln(Trade_i) + \beta_
 
 ### 4.1 Regression Output
 
-| Variable             | Coefficient | Std. Error | t-ratio | P>|t|   | [0.025  | 0.975] |
+| Variable             | Coefficient | Std. Error | t-ratio | P>|t|   |  0.025  |  0.975 |
 |----------------------|-------------|------------|---------|---------|---------|--------|
 | const                | 101.2399    | 10.937     | 9.257   | 0.000   | 79.582  | 122.898|
 | Log-GDP              | -4.6682     | 0.890      | -5.244  | 0.000   | -6.431  | -2.906 |
