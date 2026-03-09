@@ -1,5 +1,69 @@
+# Macroeconomic Determinants of Income Inequality: A Cross-Country Empirical Analysis
+
+**Authors:** Sambit Mishra, Dhruv Tyagi, Ritobrata Purkayastha, Barsha Mishra, Jahnvi Bahl
+
+**Date:** March 9, 2026
 
 ---
+
+## Abstract
+
+This paper examines correlates of income inequality across a sample of 125 countries using cross-sectional regression analysis. Drawing on theoretical frameworks from the inequality literature, we investigate the relationship between the Gini coefficient and several economic variables: GDP per capita, trade openness, education expenditure, unemployment rate, agricultural share of GDP, and manufacturing share of GDP. The analysis is informed by established theories such as the Kuznets curve hypothesis and the Stolper-Samuelson theorem. Results indicate negative associations between inequality and GDP per capita, trade openness, and agricultural share, and a positive association with the unemployment rate. Education expenditure and manufacturing share are not statistically significant. These findings represent empirical patterns and should not be interpreted as causal.
+
+---
+
+## 1. Introduction
+
+### 1.1 Background
+Income inequality remains a central topic in economic research and policy. Cross-country differences in inequality are well-documented, and the roles of economic structure and globalization continue to be explored. This study contributes by testing several hypothesized correlates of inequality using recent cross-sectional data.
+
+### 1.2 Objectives
+1. Examine empirical associations between income inequality and selected macroeconomic variables.
+2. Assess consistency with predictions from Kuznets and Stolper-Samuelson frameworks.
+3. Present regression results with appropriate interpretive caveats.
+
+---
+
+## 2. Literature Review
+
+### 2.1 The Kuznets Curve Hypothesis
+Kuznets (1955) proposed an inverted-U relationship between economic development and inequality: inequality rises during early industrialization and declines at later stages. This motivates the inclusion of GDP per capita (in logs) in our model.
+
+### 2.2 Stolper-Samuelson Theorem
+The Stolper-Samuelson theorem suggests that trade liberalization affects income distribution by altering returns to factors of production. The direction of the effect depends on a country's factor endowments, making the expected sign of trade openness ambiguous. We include trade openness (in logs) to capture this.
+
+---
+
+## 3. Data and Methodology
+
+### 3.1 Data Sources
+Cross-sectional data for 125 countries are drawn from the World Bank's World Development Indicators.
+
+### 3.2 Variable Description
+
+#### Dependent Variable:
+- **Gini_Index**: Gini coefficient (0 = perfect equality, 100 = perfect inequality).
+
+#### Independent Variables:
+- **Log_GDP**: Natural log of GDP per capita (constant USD).
+- **Log_Trade**: Natural log of trade openness [(exports + imports)/GDP %].
+- **Edu_Expenditure**: Public education expenditure (% of GDP).
+- **Unemployment_Rate**: Total unemployment (% of labor force).
+- **Agri_Share_GDP**: Agriculture value added (% of GDP).
+- **Manuf_Share_GDP**: Manufacturing value added (% of GDP).
+
+### 3.3 Theoretical Expectations
+
+| Variable             | Suggested Pattern | Basis in Literature |
+|----------------------|-------------------|----------------------|
+| Log_GDP              | Negative at higher income | Kuznets (1955) |
+| Log_Trade            | Ambiguous | Stolper-Samuelson; Bourguignon (2017) |
+| Edu_Expenditure      | Potentially negative | Frieden (2001) |
+| Unemployment_Rate    | Potentially positive | Bourguignon (2017) |
+| Agri_Share_GDP       | Context-dependent | Kuznets (1955); Bourguignon (2017) |
+| Manuf_Share_GDP      | Context-dependent | Kuznets (1955); Bourguignon (2017) |
+
+$$Gini\_Index_i = \beta_0 + \beta_1 \ln(GDPpc_i) + \beta_2 \ln(Trade_i) + \beta_3 EduExp_i + \beta_4 Unemp_i + \beta_5 AgriShare_i + \beta_6 ManufShare_i + \varepsilon_i$$
 
 ## 4. Results
 
@@ -83,3 +147,7 @@ These are descriptive correlations, not causal estimates.
 6. Kuznets, S. (1955). Economic growth and income inequality. *American Economic Review*.
 7. Stolper, W. F., & Samuelson, P. A. (1941). Protection and real wages. *Review of Economic Studies*.
 8. Winters, L. A., McCulloch, N., & McKay, A. (2004). Trade liberalization and poverty. *Journal of Economic Literature*.
+
+
+### 3.4 Model Specification
+We estimate the following OLS regression with robust standard errors:
