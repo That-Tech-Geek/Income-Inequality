@@ -136,14 +136,13 @@ These are descriptive correlations, not causal estimates.
 
 ## References
 
-1. Acemoglu, D., Johnson, S., & Robinson, J. A. (2001). The colonial origins of comparative development. *American Economic Review*.
-2. Bourguignon, F. (2017). World changes in inequality. *BIS Working Papers*.
-3. Cramer, C. (2003). Does inequality cause conflict? *Journal of International Development*.
-4. Frieden, J. (2001). Inequality, causes and possible futures. *Harvard University*.
-5. Joyce, J. P. (2008). Globalization and inequality. In S. Asefa (Ed.), *Globalization and International Development*.
-6. Kuznets, S. (1955). Economic growth and income inequality. *American Economic Review*.
-7. Stolper, W. F., & Samuelson, P. A. (1941). Protection and real wages. *Review of Economic Studies*.
-8. Winters, L. A., McCulloch, N., & McKay, A. (2004). Trade liberalization and poverty. *Journal of Economic Literature*.
+1. Bourguignon, F. (2017). World changes in inequality. *BIS Working Papers*.
+2. Cramer, C. (2003). Does inequality cause conflict? *Journal of International Development*.
+3. Frieden, J. (2001). Inequality, causes and possible futures. *Harvard University*.
+4. Joyce, J. P. (2008). Globalization and inequality. In S. Asefa (Ed.), *Globalization and International Development*.
+5. Kuznets, S. (1955). Economic growth and income inequality. *American Economic Review*.
+6. Stolper, W. F., & Samuelson, P. A. (1941). Protection and real wages. *Review of Economic Studies*.
+7. Winters, L. A., McCulloch, N., & McKay, A. (2004). Trade liberalization and poverty. *Journal of Economic Literature*.
 
 
 ### 3.4 Model Specification
