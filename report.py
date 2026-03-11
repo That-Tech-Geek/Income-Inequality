@@ -5,7 +5,7 @@ import statsmodels.api as sm
 import matplotlib.pyplot as plt
 import seaborn as sns
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-from statsmodels.stats.diagnostic import het_breuschpagan # Imported for Heteroscedasticity test
+from statsmodels.stats.diagnostic import het_breuschpagan
 
 # ---------------------------------------------------------
 # 1. DATA FETCHING AND CLEANING
@@ -23,7 +23,8 @@ indicators = {
     'SL.UEM.TOTL.ZS': 'Unemployment_Rate',
     'NV.AGR.TOTL.ZS': 'Agri_Share_GDP',
     'NV.IND.MANF.ZS': 'Manuf_Share_GDP',
-    'NV.SRV.TOTL.ZS': 'Services_Share_GDP'
+    'NV.SRV.TOTL.ZS': 'Services_Share_GDP',
+    'SL.TLF.CACT.FE.ZS': 'Female_Labor_Part'
 }
 
 data_dict = {}
@@ -44,7 +45,10 @@ df = pd.DataFrame(data_dict)
 df_clean = df.dropna()
 
 print(f"Total countries with complete data: {len(df_clean)}\n")
+# Temporarily display all rows without truncating
+pd.set_option('display.max_rows', None)
 display(df_clean)
+pd.reset_option('display.max_rows')
 
 # Save to a new CSV so you don't overwrite your old one
 df_clean.to_csv('Group1_Inequality_Data_With_Agri.csv')
@@ -53,37 +57,37 @@ df_clean.to_csv('Group1_Inequality_Data_With_Agri.csv')
 # 2. MODEL PREPARATION AND INITIAL OLS
 # ---------------------------------------------------------
 
-# Apply the winning transformations
+# Apply the transformations
 # Y (Gini Index) stays as a level variable
 Y_final = df_clean['Gini_Index']
 
-# X variables: GDP and Trade become logged, the rest stay as level variables
+# X variables: ONLY GDP is logged now, the rest stay as level variables
 X_final = pd.DataFrame()
 X_final['Log_GDP'] = np.log(df_clean['GDP_Per_Capita_PPP'])
-X_final['Log_Trade'] = np.log(df_clean['Trade_Openness'])
+X_final['Trade_Openness'] = df_clean['Trade_Openness'] # Removed np.log() here
 X_final['Edu_Expenditure'] = df_clean['Edu_Expenditure']
 X_final['Unemployment_Rate'] = df_clean['Unemployment_Rate']
 X_final['Agri_Share_GDP'] = df_clean['Agri_Share_GDP']
 X_final['Manuf_Share_GDP'] = df_clean['Manuf_Share_GDP']
+X_final['Female_Labor_Part'] = df_clean['Female_Labor_Part']
 # (Services sector is left out as our reference category to avoid multicollinearity)
 
 # Add the constant
 X_final = sm.add_constant(X_final)
 
-# Fit the final optimized OLS model
+# Fit the initial OLS model
 model_final = sm.OLS(Y_final, X_final)
 results_final = model_final.fit()
 
-print("=== INITIAL OPTIMIZED OLS REGRESSION ===")
+print("=== INITIAL OLS REGRESSION ===")
 print(results_final.summary())
 
-# Run a final VIF check to ensure the logs didn't introduce multicollinearity
+# Run a VIF check to ensure no multicollinearity
 print("\n=== FINAL VIF SCORES ===")
 vif_data = pd.DataFrame()
 vif_data["Variable"] = X_final.columns
 vif_data["VIF"] = [variance_inflation_factor(X_final.values, i) for i in range(X_final.shape[1])]
 print(vif_data.round(2))
-
 
 # ---------------------------------------------------------
 # 3. HETEROSCEDASTICITY DIAGNOSTICS & CORRECTION
@@ -116,3 +120,8 @@ plt.ylabel('Residuals', fontsize=12)
 plt.axhline(y=0, color='black', linestyle='--')
 plt.grid(True, linestyle=':', alpha=0.7)
 plt.show()
+
+# Model Correction: Re-fit with Heteroscedasticity-Robust Standard Errors (HC3)
+print("\n=== FINAL OLS REGRESSION (WITH HC3 ROBUST STANDARD ERRORS) ===")
+robust_results = results_final.get_robustcov_results(cov_type='HC3')
+print(robust_results.summary())
